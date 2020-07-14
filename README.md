@@ -5,18 +5,23 @@ To setup the Project
 
 Step 1: Go to API Folder, run the follwing commands:
 
-> npm install
 To install dependencies
-> npm start
+> npm install
+
+
 This will run the Backend which is monitored constantly for changes using Nodemon on port 3031
+> npm start
 
 Step 2: Go to UI/inventory-management Folder, run the follwing commands:
 
-> npm install
 To install dependencies
-> ng serve
+> npm install
+
 To run Frontend on port 4200
+> ng serve
+
 
 Use the following Creds for Login:
 > Email Id: Anni@test.com
+
 > Password: New

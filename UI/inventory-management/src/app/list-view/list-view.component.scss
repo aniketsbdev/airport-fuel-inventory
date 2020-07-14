@@ -1,5 +1,5 @@
 .holder {
-    display: flex;
+    // display: flex;
     align-items: center;
     justify-content: center;
     margin: 16px;
@@ -10,7 +10,7 @@
     align-items: center;
 }
 
-.example-table-container {
+.airport-table {
     position: relative;
     max-height: 400px;
     overflow: auto;
@@ -20,7 +20,7 @@ table {
     width: 100%;
 }
 
-.example-loading-shade {
+.loader {
     position: absolute;
     top: 0;
     left: 0;

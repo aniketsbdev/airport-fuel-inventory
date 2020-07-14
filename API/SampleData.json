@@ -1,0 +1,44 @@
+{
+    "user": [
+        {
+            "user_id": "1",
+            "name": "",
+            "email": "Anni@test.com",
+            "password": "New"
+        }
+    ],
+    "airport": [
+        {
+            "airport_id": "1",
+            "airport_name": "ABC",
+            "fuel_capacity": "123",
+            "fuel_available": "100"
+        },
+        {
+            "airport_id": "2",
+            "airport_name": "XYZ",
+            "fuel_capacity": "234",
+            "fuel_available": "123"
+        }
+    ],
+    "aircraft": [
+        {
+            "aircraft_id": "",
+            "aircraft_no": "",
+            "source": "",
+            "destination": "",
+            "transaction": ""
+        }
+    ],
+    "transaction": [
+        {
+            "transaction_id": "",
+            "transaction_date_time": "",
+            "transaction_type": "",
+            "airport_id": "",
+            "aircraft_id": "",
+            "quantity": "",
+            "transaction_id_parent": ""
+        }
+    ]
+}

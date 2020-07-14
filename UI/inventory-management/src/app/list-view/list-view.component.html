@@ -1,51 +1,51 @@
 <mat-tab-group dynamicHeight>
-    <mat-tab label="Hey">
+    <mat-tab label="Aircrafts">
         <div class="holder mat-elevation-z4">
-            <div class="example-loading-shade" *ngIf="isLoadingResults">
+            <div class="loader" *ngIf="isLoadingResults">
                 <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
             </div>
         
-            <div class="example-table-container">
+            <div class="airport-table">
         
-                <table mat-table [dataSource]="airportDatasource" class="airport-table" matSort matSortActive="created" matSortDisableClear
+                <table mat-table [dataSource]="airportDatasource" class="airport-table" matSort matSortActive="id" matSortDisableClear
                     matSortDirection="desc">
-                    <!-- Number Column -->
-                    <ng-container matColumnDef="number">
-                        <th mat-header-cell *matHeaderCellDef>#</th>
-                        <td mat-cell *matCellDef="let row">{{row.number}}</td>
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef>Airport ID</th>
+                        <td mat-cell *matCellDef="let row">{{row.airport_id}}</td>
                     </ng-container>
         
-                    <!-- Title Column -->
-                    <ng-container matColumnDef="title">
-                        <th mat-header-cell *matHeaderCellDef>Title</th>
-                        <td mat-cell *matCellDef="let row">{{row.title}}</td>
+                    <!--Airport Name Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef>Airport Name</th>
+                        <td mat-cell *matCellDef="let row">{{row.airport_name}}</td>
                     </ng-container>
         
-                    <!-- State Column -->
-                    <ng-container matColumnDef="state">
-                        <th mat-header-cell *matHeaderCellDef>State</th>
-                        <td mat-cell *matCellDef="let row">{{row.state}}</td>
+                    <!-- Fuel Column -->
+                    <ng-container matColumnDef="fuel_available">
+                        <th mat-header-cell *matHeaderCellDef>Fuel Available</th>
+                        <td mat-cell *matCellDef="let row">{{row.fuel_available}}</td>
                     </ng-container>
         
-                    <!-- Created Column -->
-                    <ng-container matColumnDef="created">
+                    <!-- Capacity Column -->
+                    <ng-container matColumnDef="fuel_capacity">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
-                            Created
+                            Fuel Capaity
                         </th>
-                        <td mat-cell *matCellDef="let row">{{row.created_at | date}}</td>
+                        <td mat-cell *matCellDef="let row">{{row.fuel_capacity}}</td>
                     </ng-container>
         
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <tr mat-header-row *matHeaderRowDef="airportColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: airportColumns;"></tr>
                 </table>
             </div>
         
             <mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator>
         </div>
     </mat-tab>
-    <mat-tab label="Long tab">
+    <mat-tab label="Airports">
         <div class="example-large-box mat-elevation-z4">
-            Large content
+            Airport Table
         </div>
     </mat-tab>
 </mat-tab-group>

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { NetworkService } from '../network/network.service';
 
 @Component({
   selector: 'app-list-view',
@@ -8,12 +9,14 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 })
 export class ListViewComponent implements OnInit {
 
-  displayedColumns: string[] = ['created', 'state', 'number', 'title'];
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
+  airportData: any[] = [];
+  aircraftData: any[] = [];
 
   airportDatasource = new MatTableDataSource();
+  airportColumns: string[] = ['id', 'name', 'fuel_available', 'fuel_capacity',];
   @ViewChild('airportPaginator', { read: true, static: false }) airportPaginator: MatPaginator;
   @ViewChild('airportSort', { read: true, static: false }) airportSort: MatSort;
 
@@ -23,17 +26,23 @@ export class ListViewComponent implements OnInit {
   @ViewChild('transactionPaginator', { read: true, static: false }) transactionPaginator: MatPaginator;
   @ViewChild('transactionSort', { read: true, static: false }) transactionSort: MatSort;
 
-  constructor() { }
+  constructor(private network: NetworkService) { }
 
   ngOnInit() {
+    this.getAirportData();
+
   }
 
   getAirportData() {
+    this.network.airportData().subscribe(res => {
+      this.airportData = res['data'];
+      this.airportDatasource.data = this.airportData;
+      this.airportDatasource.paginator = this.airportPaginator;
+      this.airportDatasource.sort = this.airportSort;
+      console.log(this.airportDatasource.data);
 
-    
-    this.interactionTableDataSource.data = this.interactionTableData;
-    this.interactionTableDataSource.paginator = this.interactionPaginator;
-    this.interactionTableDataSource.sort = this.interationSort;
+      this.isLoadingResults = false;
+    });
   }
 
 }

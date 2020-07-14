@@ -12,13 +12,12 @@ export class NetworkService {
   private default: string = this.baseUrl;
   header = new HttpHeaders({ 'Content-Type': 'application/json' });
   loginUrl: String = 'login/';
-
-  credentials: any = { name: "Anni", password: "New" };
+  airportDataUrl: String = 'airportData/';
 
   constructor(private http: HttpClient) { }
 
-  login(credentials: any) {
-    let loginData = this.http.post(this.baseUrl + this.loginUrl, this.credentials).pipe(map(res => res));
+  login(credentials: {}) {
+    let loginData = this.http.post(this.baseUrl + this.loginUrl, credentials).pipe(map(res => res));
     loginData.subscribe(res => {
       if (res && res.hasOwnProperty("userFound")) {
         console.log("Here");
@@ -34,6 +33,10 @@ export class NetworkService {
     let approved: boolean;
     approved = (sessionStorage.getItem("userApproved") == 'true') ? true : false;
     return approved;
+  }
+
+  airportData() {
+    return this.http.get(this.baseUrl + this.airportDataUrl).pipe(map(res => res));
   }
 
   logout() {

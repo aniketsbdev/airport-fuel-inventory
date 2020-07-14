@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
+const fs = require('fs');
 
-const user1 = { userName: "Anni", password: "New" }
+let rawdata = fs.readFileSync('SampleData.json');
+let fileData = JSON.parse(rawdata);
 
 app.use(express.json());
 
@@ -14,13 +16,19 @@ app.use((req, res, next) => {
 });
 
 app.post('/login', (req, res) => {
-    if (req.body.name == user1.userName && req.body.password == user1.password) {
-        res.status(200).send({ userFound: true, userName: user1.userName });
+    let users = fileData.user;
+    for (const user of users) {
+        if (req.body.email == user.email && req.body.password == user.password) {
+            res.status(200).send({ userFound: true, userName: user.name });
+            break;
+        } else {
+            res.status(403).send({ userFound: false });
+        }
     }
 });;
 
-app.get('/logins', (req, res) => {
-    res.json(users);
+app.get('/airportData', (req, res) => {
+    res.json({ data: fileData.airport } || {});
 });;
 
 console.log("HeyHessy");
